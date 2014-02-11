@@ -1,4 +1,3 @@
-#include <QNetworkAccessManager>
 #include <QUrl>
 #include <QDebug>
 #include <QXmlStreamReader>
@@ -7,10 +6,7 @@
 #include "poststatus.h"
 
 void Task::run() {
-    QNetworkAccessManager *manager = new QNetworkAccessManager(this);
-    connect(manager, SIGNAL(finished(QNetworkReply*)),
-            this, SLOT(replyFinished(QNetworkReply*)));
-    manager->get(QNetworkRequest(QUrl("http://portal.uni-ulm.de/PortalNG/post.html")));
+    mgr_->get(QNetworkRequest(QUrl("http://portal.uni-ulm.de/PortalNG/post.html")));
 }
 
 void Task::replyFinished(QNetworkReply *nwr) {

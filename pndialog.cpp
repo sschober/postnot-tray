@@ -3,6 +3,7 @@
 
 #include <QSystemTrayIcon>
 #include <QDebug>
+#include <QStringBuilder>
 
 PNDialog::PNDialog(QWidget *parent) :
     QDialog(parent),
@@ -24,12 +25,10 @@ PNDialog::PNDialog(QWidget *parent) :
         ti = new QSystemTrayIcon(this);
         ti->setContextMenu(qm);
 
-        QIcon icon(":/icon/email-small");
-        if(icon.isNull()){
-            qDebug() << "Icon was null!";
-            return;
-        }
-        ti->setIcon(icon);
+        icnEMail = new QIcon(":/icon/email-small");
+        icnEMailAktiv = new QIcon(":/icon/email-aktiv");
+
+        ti->setIcon(*icnEMail);
         ti->setToolTip("PostNot");
         ti->show();
 
@@ -44,12 +43,11 @@ PNDialog::PNDialog(QWidget *parent) :
 
 void PNDialog::updateIcon(bool status){
     if(status){
-        QIcon icon(":/icon/email-aktiv");
-        ti->setIcon(icon);
+        ti->setIcon(*icnEMailAktiv);
+        ti->setToolTip( QString("Post in Postfach: ") % QString().setNum(ui->sbPostfach->value()));
     }
     else{
-        QIcon icon(":/icon/email-small");
-        ti->setIcon(icon);
+        ti->setIcon(*icnEMail);
     }
     ti->show();
 }

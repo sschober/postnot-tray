@@ -32,5 +32,7 @@ private:
     QAction *qaConfig;
     QTimer *t;
     Task *ta;
+    QIcon *icnEMail;
+    QIcon *icnEMailAktiv;
 };
 #endif // PNDIALOG_H
