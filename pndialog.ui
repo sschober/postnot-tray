@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>228</width>
-    <height>297</height>
+    <width>369</width>
+    <height>243</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -26,35 +26,11 @@
      <property name="title">
       <string>Settings</string>
      </property>
-     <layout class="QVBoxLayout" name="verticalLayout_2">
-      <item>
-       <widget class="QLabel" name="label_2">
-        <property name="text">
-         <string>Postfach</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QSpinBox" name="sbPostfach">
-        <property name="minimum">
-         <number>1</number>
-        </property>
-        <property name="maximum">
-         <number>10</number>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QLabel" name="label_3">
-        <property name="text">
-         <string>Update Interval (HH:mm:ss)</string>
-        </property>
-       </widget>
-      </item>
-      <item>
+     <layout class="QGridLayout" name="gridLayout">
+      <item row="3" column="1">
        <widget class="QTimeEdit" name="teIntervall">
         <property name="currentSection">
-         <enum>QDateTimeEdit::HourSection</enum>
+         <enum>QDateTimeEdit::SecondSection</enum>
         </property>
         <property name="displayFormat">
          <string>HH:mm:ss</string>
@@ -65,6 +41,30 @@
           <minute>0</minute>
           <second>1</second>
          </time>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QSpinBox" name="sbPostfach">
+        <property name="minimum">
+         <number>1</number>
+        </property>
+        <property name="maximum">
+         <number>10</number>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="0">
+       <widget class="QLabel" name="lbPostfach">
+        <property name="text">
+         <string>Postfach</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="0">
+       <widget class="QLabel" name="lbInterval">
+        <property name="text">
+         <string>Update Interval (HH:mm:ss)</string>
         </property>
        </widget>
       </item>
@@ -103,6 +103,13 @@
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
+      <widget class="QPushButton" name="pbQuit">
+       <property name="text">
+        <string>Beenden</string>
+       </property>
+      </widget>
+     </item>
+     <item>
       <spacer name="horizontalSpacer_2">
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
@@ -118,14 +125,17 @@
      <item>
       <widget class="QPushButton" name="pbCancel">
        <property name="text">
-        <string>Cancel</string>
+        <string>Abbrechen</string>
        </property>
       </widget>
      </item>
      <item>
       <widget class="QPushButton" name="pbOK">
+       <property name="focusPolicy">
+        <enum>Qt::TabFocus</enum>
+       </property>
        <property name="text">
-        <string>OK</string>
+        <string>Übernehmen</string>
        </property>
       </widget>
      </item>
@@ -134,6 +144,13 @@
   </layout>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
+ <tabstops>
+  <tabstop>pbOK</tabstop>
+  <tabstop>teIntervall</tabstop>
+  <tabstop>pbQuit</tabstop>
+  <tabstop>pbCancel</tabstop>
+  <tabstop>sbPostfach</tabstop>
+ </tabstops>
  <resources>
   <include location="postnot.qrc"/>
  </resources>

@@ -39,8 +39,10 @@ PNDialog::PNDialog(QWidget *parent) :
         t = new QTimer(this);
         connect(t, SIGNAL(timeout()),ta,SLOT(run()));
         t->start(1000);
+
         connect(ui->pbOK,SIGNAL(clicked()),this,SLOT(updateConfig()));
         connect(ui->pbCancel,SIGNAL(clicked()),this, SLOT(hide()));
+        connect(ui->pbQuit,SIGNAL(clicked()),qApp, SLOT(quit()));
 
         setWindowFlags((Qt::CustomizeWindowHint | Qt::WindowTitleHint) & ~Qt::WindowMaximizeButtonHint);
         this->setFixedSize(this->size());
