@@ -41,9 +41,13 @@ PNDialog::PNDialog(QWidget *parent) :
         t->start(1000);
         connect(ui->pbOK,SIGNAL(clicked()),this,SLOT(updateConfig()));
         connect(ui->pbCancel,SIGNAL(clicked()),this, SLOT(hide()));
+
+        setWindowFlags((Qt::CustomizeWindowHint | Qt::WindowTitleHint) & ~Qt::WindowMaximizeButtonHint);
+        this->setFixedSize(this->size());
     }
     else {
         QMessageBox::critical(this, "Keine Task-Leiste verfuegbar","Keine Task-Leiste verfuegbar.");
+        qApp->quit();
     }
 }
 
