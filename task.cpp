@@ -10,7 +10,6 @@ void Task::run() {
 }
 
 void Task::replyFinished(QNetworkReply *nwr) {
-    bool post = false;
     QVariant statusCode = nwr->attribute(QNetworkRequest::HttpStatusCodeAttribute);
     if(QNetworkReply::NoError == nwr->error()){
         QXmlStreamReader xmlStrRdr(nwr);
