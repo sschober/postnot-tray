@@ -18,17 +18,11 @@ void Task::replyFinished(QNetworkReply *nwr) {
             QXmlStreamReader::TokenType t = xmlStrRdr.readNext();
             if(QXmlStreamReader::StartElement == t && xmlStrRdr.name() == "status"){
                 xmlStrRdr.readNext();
-//                qDebug() << xmlStrRdr.text();
-                Poststatus st(xmlStrRdr.text().toString());
-                if(st.hatPost(postfach_)){
-//                    qDebug() << "post in fach " << (postfach_ + 1);
-                }
-                post = st.hatPost(postfach_);
+                emit aktualisierung(xmlStrRdr.text().toString());
             }
         }
     }
     else{
         qWarning() << nwr->error();
     }
-    emit aktualisierung(post);
 }

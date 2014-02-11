@@ -21,7 +21,7 @@ public:
     ~PNDialog();
 
 public slots:
-    void updateIcon(bool status);
+    void updateIcon(QString);
     void updateConfig();
 
 private:
