@@ -1,17 +1,17 @@
 postnot-tray
 ============
 
-Postnotifikation in der Symbolleiste
+Postnotifikation in der Symbolleiste.
 
-Das Postfach ist über einen Dialog konfigurierebar.
+Das geprüfte Postfach, sowie der Aktualisierungsinterval ist über
+einen Dialog konfigurierebar.
 
-(URL und Zeitintervaleinstellungen werden noch nicht berücksichtigt.)
 
 Voraussetzungen
 ---------------
 
-1. Qt Framework >= 5
-2. C++ Kompiler
+1. Qt-Framework >= 5
+2. C++ Compiler
 
 Übersetzen
 ----------
