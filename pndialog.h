@@ -34,5 +34,6 @@ private:
     Task *ta;
     QIcon *icnEMail;
     QIcon *icnEMailAktiv;
+    const static char *STATUS_;
 };
 #endif // PNDIALOG_H

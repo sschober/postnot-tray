@@ -7,6 +7,8 @@
 #include <QMessageBox>
 #include "poststatus.h"
 
+const char *PNDialog::STATUS_ = "status";
+
 PNDialog::PNDialog(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::PNDialog)
@@ -32,6 +34,7 @@ PNDialog::PNDialog(QWidget *parent) :
 
         ti->setIcon(*icnEMail);
         ti->setToolTip("PostNot");
+        ti->setProperty(STATUS_,QVariant(false));
         ti->show();
 
         ta = new Task(this);
@@ -57,10 +60,30 @@ void PNDialog::updateIcon(QString status){
     Poststatus p(status);
     ui->lbStatus->setText(status);
     if(p.hatPost(ui->sbPostfach->value()-1)){
+        // Flanken getriggerte Notifikation
+        // TODO: Eigentlich muss ich mir dazu auch noch das Postfach merken
+        if(ti->property(STATUS_).isValid() &&
+                !ti->property(STATUS_).toBool()){
+            // status war vorher inaktiv
+            ti->showMessage(  "Neue Post",
+                              QString("Es befindet sich Post in Fach ")
+                                % QString().setNum(ui->sbPostfach->value())
+                                % QString("!"));
+        }
+        ti->setProperty(STATUS_,QVariant(true));
         ti->setIcon(*icnEMailAktiv);
         ti->setToolTip( QString("Post in Postfach: ") % QString().setNum(ui->sbPostfach->value()));
     }
     else{
+        if(ti->property(STATUS_).isValid()
+                && ti->property(STATUS_).toBool()){
+            // status war vorher aktiv
+            ti->showMessage( "Post entfernt",
+                             QString("Es befindet sich keine Post in Fach ")
+                                % QString().setNum(ui->sbPostfach->value())
+                                % QString("!"));
+        }
+        ti->setProperty(STATUS_,QVariant(false));
         ti->setIcon(*icnEMail);
         ti->setToolTip( QString("Keine Post in Postfach: ") % QString().setNum(ui->sbPostfach->value()));
     }
