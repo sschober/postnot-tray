@@ -2,7 +2,7 @@
 
 bool Poststatus::hatPost(int fach){
     if(fach < status_.length()){
-        return status_.at(fach) == '1';
+        return status_.at(fach) == '0'; // total verqueere semantik
     }
     return false;
 }
