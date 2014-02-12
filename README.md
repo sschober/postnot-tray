@@ -23,4 +23,9 @@ Voraussetzungen
 
     qmake
     make
+    
+Bekannte Probleme
+-----------------
+
+- Unter linux und dem Unity Desktop wird das Icon rechts neben der Starleiste, am oberen Ende dargestellt und verschwindet, wenn eine andere App den Fokus hat.
 
