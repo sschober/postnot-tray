@@ -16,13 +16,16 @@ PNDialog::PNDialog(QWidget *parent) :
     ui->setupUi(this);
     if(QSystemTrayIcon::isSystemTrayAvailable()){
 
-        qaQuit = new QAction(tr("&Quit"), this);
+        qaQuit = new QAction(tr("&Beenden"), this);
         connect(qaQuit, SIGNAL(triggered()), qApp, SLOT(quit()));
-        qaConfig = new QAction(tr("&Configure"),this);
+        QAction *qaAbout = new QAction(tr("Ü&ber PostNot-Tray"),this);
+        connect(qaAbout,SIGNAL(triggered()),this, SLOT(showAbout()));
+        qaConfig = new QAction(tr("&Konfigurieren"),this);
         connect(qaConfig, SIGNAL(triggered()), this, SLOT(show()));
 
         qm = new QMenu(this);
         qm->addAction(qaConfig);
+        qm->addAction(qaAbout);
         qm->addSeparator();
         qm->addAction(qaQuit);
 
@@ -48,7 +51,8 @@ PNDialog::PNDialog(QWidget *parent) :
         connect(ui->pbQuit,SIGNAL(clicked()),qApp, SLOT(quit()));
 
         setWindowFlags((Qt::CustomizeWindowHint | Qt::WindowTitleHint) & ~Qt::WindowMaximizeButtonHint);
-        this->setFixedSize(this->size());
+        setFixedSize(this->size());
+        ui->lbStatus->setAlignment(Qt::AlignHCenter);
     }
     else {
         QMessageBox::critical(this, "Keine Task-Leiste verfuegbar","Keine Task-Leiste verfuegbar.");
@@ -99,6 +103,10 @@ void PNDialog::updateConfig() {
     QTime interval(ui->teIntervall->time());
     t->start( 1000 * 60 * interval.minute()+ 1000 * interval.second());
     this->hide();
+}
+
+void PNDialog::showAbout(){
+    QMessageBox::about(this,"PostNot-Tray","Ein Postnotifikationssymbol in der Task-Leiste\n\nAutor:\tSven Schober");
 }
 
 PNDialog::~PNDialog()

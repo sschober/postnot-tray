@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>369</width>
+    <width>371</width>
     <height>243</height>
    </rect>
   </property>
@@ -24,13 +24,13 @@
    <item>
     <widget class="QGroupBox" name="groupBox">
      <property name="title">
-      <string>Settings</string>
+      <string>Einstellungen</string>
      </property>
      <layout class="QGridLayout" name="gridLayout">
       <item row="3" column="1">
        <widget class="QTimeEdit" name="teIntervall">
         <property name="currentSection">
-         <enum>QDateTimeEdit::SecondSection</enum>
+         <enum>QDateTimeEdit::HourSection</enum>
         </property>
         <property name="displayFormat">
          <string>HH:mm:ss</string>
@@ -57,14 +57,14 @@
       <item row="0" column="0">
        <widget class="QLabel" name="lbPostfach">
         <property name="text">
-         <string>Postfach</string>
+         <string>Postfach:</string>
         </property>
        </widget>
       </item>
       <item row="3" column="0">
        <widget class="QLabel" name="lbInterval">
         <property name="text">
-         <string>Update Interval (HH:mm:ss)</string>
+         <string>Aktualisierungsinterval:</string>
         </property>
        </widget>
       </item>
@@ -79,6 +79,9 @@
      <layout class="QVBoxLayout" name="verticalLayout_3">
       <item>
        <widget class="QLabel" name="lbStatus">
+        <property name="layoutDirection">
+         <enum>Qt::LeftToRight</enum>
+        </property>
         <property name="text">
          <string/>
         </property>

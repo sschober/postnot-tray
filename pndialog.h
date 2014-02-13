@@ -23,6 +23,7 @@ public:
 public slots:
     void updateIcon(QString);
     void updateConfig();
+    void showAbout();
 
 private:
     Ui::PNDialog *ui;
