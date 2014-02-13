@@ -2,5 +2,6 @@
     <qresource prefix="/icon">
         <file alias="email-small">e_mail_klein.ico</file>
         <file alias="email-aktiv">e_mail_klein_aktiv.ico</file>
+        <file>mail2.ico</file>
     </qresource>
 </RCC>

@@ -6,6 +6,7 @@
 #include <QStringBuilder>
 #include <QMessageBox>
 #include "poststatus.h"
+#include "ui_about.h"
 
 const char *PNDialog::STATUS_ = "status";
 
@@ -53,6 +54,8 @@ PNDialog::PNDialog(QWidget *parent) :
         setWindowFlags((Qt::CustomizeWindowHint | Qt::WindowTitleHint) & ~Qt::WindowMaximizeButtonHint);
         setFixedSize(this->size());
         ui->lbStatus->setAlignment(Qt::AlignHCenter);
+        qApp->setQuitOnLastWindowClosed(false);
+
     }
     else {
         QMessageBox::critical(this, "Keine Task-Leiste verfuegbar","Keine Task-Leiste verfuegbar.");
@@ -106,7 +109,12 @@ void PNDialog::updateConfig() {
 }
 
 void PNDialog::showAbout(){
-    QMessageBox::about(this,"PostNot-Tray","Ein Postnotifikationssymbol in der Task-Leiste\n\nAutor:\tSven Schober");
+    QDialog *d = new QDialog(this);
+    Ui_About *a = new Ui_About();
+    a->setupUi(d);
+    a->lbText->setOpenExternalLinks(true);
+    d->setFixedSize(d->size());
+    d->exec();
 }
 
 PNDialog::~PNDialog()

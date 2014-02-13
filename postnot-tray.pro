@@ -21,7 +21,8 @@ HEADERS  += pndialog.h \
     poststatus.h \
     task.h
 
-FORMS    += pndialog.ui
+FORMS    += pndialog.ui \
+    about.ui
 
 RESOURCES += \
     postnot.qrc
