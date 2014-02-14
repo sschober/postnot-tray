@@ -12,6 +12,12 @@
 
 #define INTERVALL "intervall"
 #define POSTFACH "postfach"
+#define HOURS "hours"
+#define MINS "mins"
+#define SECS "secs"
+#define DEFAULT_INTERVALL_HOURS 0
+#define DEFAULT_INTERVALL_MINS 1
+#define DEFAULT_INTERVALL_SECS 0
 
 const char *PNDialog::STATUS_ = "status";
 
@@ -52,8 +58,14 @@ PNDialog::PNDialog(QWidget *parent) :
         t = new QTimer(this);
         connect(t, SIGNAL(timeout()),ta,SLOT(run()));
         QSettings settings;
-        t->start(settings.value(INTERVALL,1000).toInt());
+        QTime ti(settings.value(HOURS, DEFAULT_INTERVALL_HOURS).toInt(),
+                settings.value(MINS, DEFAULT_INTERVALL_MINS).toInt(),
+                settings.value(SECS, DEFAULT_INTERVALL_SECS).toInt());
+        t->start(1000 * ti.second() + 1000 * 60 * ti.minute() + 1000 * 60 * 60 *ti.hour());
 
+        QTimer::singleShot(0, ta, SLOT(run()));
+
+        ui->teIntervall->setTime(ti);
         ui->sbPostfach->setValue(settings.value(POSTFACH,0).toInt() + 1);
 
         connect(ui->pbOK,SIGNAL(clicked()),this,SLOT(updateConfig()));
@@ -113,11 +125,13 @@ void PNDialog::updateConfig() {
     connect(ta,SIGNAL(aktualisierung(QString)),this,SLOT(updateIcon(QString)));
     connect(t, SIGNAL(timeout()),ta,SLOT(run()));
     QTime interval(ui->teIntervall->time());
-    t->start( 1000 * 60 * interval.minute()+ 1000 * interval.second());
+    t->start( 1000 * 60 * 60 * interval.hour() + 1000 * 60 * interval.minute() + 1000 * interval.second());
 
     QSettings settings;
     settings.setValue(QString(POSTFACH), ui->sbPostfach->value()-1);
-    settings.setValue(QString(INTERVALL), 1000 * 60 * interval.minute()+ 1000 * interval.second());
+    settings.setValue(HOURS, interval.hour());
+    settings.setValue(MINS,interval.minute());
+    settings.setValue(SECS, interval.second());
 
     this->hide();
 }
