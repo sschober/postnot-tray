@@ -133,7 +133,7 @@
            <bool>false</bool>
           </property>
           <property name="text">
-           <string>www-proxy.uni-ulm.de</string>
+           <string>zuv-proxy.rz.uni-ulm.des</string>
           </property>
          </widget>
         </item>

@@ -18,7 +18,9 @@ public slots:
     void replyFinished(QNetworkReply *nwr);
 
 signals:
-    void aktualisierung(QString);
+    void aktualisierung(QString);\
+    void verbindungsProblem(QString);
+
 private:
     QNetworkAccessManager *mgr_;
 };

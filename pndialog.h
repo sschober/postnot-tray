@@ -25,6 +25,7 @@ public slots:
     void updateConfig();
     void showAbout();
     void cbProxyClicked(bool);
+    void connectionProblem(QString);
 
 private:
     Ui::PNDialog *ui;

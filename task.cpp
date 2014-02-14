@@ -23,5 +23,6 @@ void Task::replyFinished(QNetworkReply *nwr) {
     }
     else{
         qWarning() << nwr->error();
+        emit verbindungsProblem(nwr->errorString());
     }
 }

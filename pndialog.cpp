@@ -13,12 +13,20 @@
 
 #define INTERVALL "intervall"
 #define POSTFACH "postfach"
+
 #define HOURS "hours"
 #define MINS "mins"
 #define SECS "secs"
 #define DEFAULT_INTERVALL_HOURS 0
 #define DEFAULT_INTERVALL_MINS 1
 #define DEFAULT_INTERVALL_SECS 0
+
+#define PROXY_FLAG "proxy-flag"
+#define PROXY_HOST "proxy-host"
+#define PROXY_PORT "proxy-port"
+#define PROXY_FLAG_DEFAULT false
+#define PROXY_HOST_DEFAULT "zuv-proxy.rz.uni-ulm.de"
+#define PROXY_PORT_DEFAULT 3128
 
 const char *PNDialog::STATUS_ = "status";
 
@@ -56,13 +64,28 @@ PNDialog::PNDialog(QWidget *parent) :
 
         ta = new Task(this);
         connect(ta,SIGNAL(aktualisierung(QString)),this,SLOT(updateIcon(QString)));
+        connect(ta,SIGNAL(verbindungsProblem(QString)),this,SLOT(connectionProblem(QString)));
         t = new QTimer(this);
         connect(t, SIGNAL(timeout()),ta,SLOT(run()));
+
         QSettings settings;
         QTime ti(settings.value(HOURS, DEFAULT_INTERVALL_HOURS).toInt(),
                 settings.value(MINS, DEFAULT_INTERVALL_MINS).toInt(),
                 settings.value(SECS, DEFAULT_INTERVALL_SECS).toInt());
         t->start(1000 * ti.second() + 1000 * 60 * ti.minute() + 1000 * 60 * 60 *ti.hour());
+
+        ui->cbProxy->setChecked(settings.value(PROXY_FLAG,PROXY_FLAG_DEFAULT).toBool());
+        ui->leProxyHost->setText(settings.value(PROXY_HOST,PROXY_HOST_DEFAULT).toString());
+        ui->leProxyPort->setText(settings.value(PROXY_PORT,PROXY_PORT_DEFAULT).toString());
+        if(ui->cbProxy->isChecked()){
+            ui->leProxyHost->setEnabled(true);
+            ui->leProxyPort->setEnabled(true);
+            QNetworkProxy p;
+            p.setType(QNetworkProxy::HttpProxy);
+            p.setHostName(ui->leProxyHost->text());
+            p.setPort(ui->leProxyPort->text().toInt());
+            QNetworkProxy::setApplicationProxy(p);
+        }
 
         QTimer::singleShot(0, ta, SLOT(run()));
 
@@ -125,6 +148,7 @@ void PNDialog::updateConfig() {
     delete ta;
     ta = new Task(this);
     connect(ta,SIGNAL(aktualisierung(QString)),this,SLOT(updateIcon(QString)));
+    connect(ta, SIGNAL(verbindungsProblem(QString)),this,SLOT(connectionProblem(QString)));
     connect(t, SIGNAL(timeout()),ta,SLOT(run()));
     QTime interval(ui->teIntervall->time());
     t->start( 1000 * 60 * 60 * interval.hour() + 1000 * 60 * interval.minute() + 1000 * interval.second());
@@ -135,14 +159,20 @@ void PNDialog::updateConfig() {
     settings.setValue(MINS,interval.minute());
     settings.setValue(SECS, interval.second());
 
-    if(ui->cbProxy){
+    if(ui->cbProxy->isChecked()){
         QNetworkProxy p;
         p.setType(QNetworkProxy::HttpProxy);
         p.setHostName(ui->leProxyHost->text());
         p.setPort(ui->leProxyPort->text().toInt());
         QNetworkProxy::setApplicationProxy(p);
+        settings.setValue(PROXY_FLAG,true);
+        settings.setValue(PROXY_HOST,ui->leProxyHost->text());
+        settings.setValue(PROXY_PORT,ui->leProxyPort->text());
     } else {
         QNetworkProxy::setApplicationProxy(QNetworkProxy::NoProxy);
+        settings.setValue(PROXY_FLAG,false);
+        settings.setValue(PROXY_HOST,ui->leProxyHost->text());
+        settings.setValue(PROXY_PORT,ui->leProxyPort->text());
     }
 
     QTimer::singleShot(0,ta, SLOT(run()));
@@ -169,6 +199,11 @@ void PNDialog::cbProxyClicked(bool checked){
         ui->leProxyHost->setEnabled(false);
         ui->leProxyPort->setEnabled(false);
     }
+}
+
+void PNDialog::connectionProblem(QString msg){
+    ti->setIcon(*icnEMailUnbekannt);
+    ti->showMessage("Verbindungsproblem", msg, QSystemTrayIcon::Warning);
 }
 
 PNDialog::~PNDialog()
