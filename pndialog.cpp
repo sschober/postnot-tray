@@ -5,8 +5,13 @@
 #include <QDebug>
 #include <QStringBuilder>
 #include <QMessageBox>
+#include <QSettings>
+
 #include "poststatus.h"
 #include "ui_about.h"
+
+#define INTERVALL "intervall"
+#define POSTFACH "postfach"
 
 const char *PNDialog::STATUS_ = "status";
 
@@ -45,7 +50,10 @@ PNDialog::PNDialog(QWidget *parent) :
         connect(ta,SIGNAL(aktualisierung(QString)),this,SLOT(updateIcon(QString)));
         t = new QTimer(this);
         connect(t, SIGNAL(timeout()),ta,SLOT(run()));
-        t->start(1000);
+        QSettings settings;
+        t->start(settings.value(INTERVALL,1000).toInt());
+
+        ui->sbPostfach->setValue(settings.value(POSTFACH,0).toInt() + 1);
 
         connect(ui->pbOK,SIGNAL(clicked()),this,SLOT(updateConfig()));
         connect(ui->pbCancel,SIGNAL(clicked()),this, SLOT(hide()));
@@ -105,6 +113,11 @@ void PNDialog::updateConfig() {
     connect(t, SIGNAL(timeout()),ta,SLOT(run()));
     QTime interval(ui->teIntervall->time());
     t->start( 1000 * 60 * interval.minute()+ 1000 * interval.second());
+
+    QSettings settings;
+    settings.setValue(QString(POSTFACH), ui->sbPostfach->value()-1);
+    settings.setValue(QString(INTERVALL), 1000 * 60 * interval.minute()+ 1000 * interval.second());
+
     this->hide();
 }
 
@@ -112,6 +125,7 @@ void PNDialog::showAbout(){
     QDialog *d = new QDialog(this);
     Ui_About *a = new Ui_About();
     a->setupUi(d);
+    a->lbVersion->setText(QString("Version: ") % qApp->applicationVersion());
     a->lbText->setOpenExternalLinks(true);
     d->setFixedSize(d->size());
     d->exec();
