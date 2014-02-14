@@ -133,6 +133,8 @@ void PNDialog::updateConfig() {
     settings.setValue(MINS,interval.minute());
     settings.setValue(SECS, interval.second());
 
+    QTimer::singleShot(0,ta, SLOT(run()));
+
     this->hide();
 }
 
