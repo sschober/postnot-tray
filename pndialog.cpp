@@ -6,6 +6,7 @@
 #include <QStringBuilder>
 #include <QMessageBox>
 #include <QSettings>
+#include <QNetworkProxy>
 
 #include "poststatus.h"
 #include "ui_about.h"
@@ -76,6 +77,7 @@ PNDialog::PNDialog(QWidget *parent) :
         setFixedSize(this->size());
         ui->lbStatus->setAlignment(Qt::AlignHCenter);
         qApp->setQuitOnLastWindowClosed(false);
+        connect(ui->cbProxy,SIGNAL(toggled(bool)),this, SLOT(cbProxyClicked(bool)));
 
     }
     else {
@@ -133,6 +135,16 @@ void PNDialog::updateConfig() {
     settings.setValue(MINS,interval.minute());
     settings.setValue(SECS, interval.second());
 
+    if(ui->cbProxy){
+        QNetworkProxy p;
+        p.setType(QNetworkProxy::HttpProxy);
+        p.setHostName(ui->leProxyHost->text());
+        p.setPort(ui->leProxyPort->text().toInt());
+        QNetworkProxy::setApplicationProxy(p);
+    } else {
+        QNetworkProxy::setApplicationProxy(QNetworkProxy::NoProxy);
+    }
+
     QTimer::singleShot(0,ta, SLOT(run()));
 
     this->hide();
@@ -146,6 +158,17 @@ void PNDialog::showAbout(){
     a->lbText->setOpenExternalLinks(true);
     d->setFixedSize(d->size());
     d->exec();
+}
+
+void PNDialog::cbProxyClicked(bool checked){
+    if(checked){
+        ui->leProxyHost->setEnabled(true);
+        ui->leProxyPort->setEnabled(true);
+    }
+    else{
+        ui->leProxyHost->setEnabled(false);
+        ui->leProxyPort->setEnabled(false);
+    }
 }
 
 PNDialog::~PNDialog()

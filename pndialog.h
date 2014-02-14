@@ -24,6 +24,7 @@ public slots:
     void updateIcon(QString);
     void updateConfig();
     void showAbout();
+    void cbProxyClicked(bool);
 
 private:
     Ui::PNDialog *ui;
