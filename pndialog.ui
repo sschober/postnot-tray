@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>371</width>
-    <height>243</height>
+    <height>224</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -50,7 +50,7 @@
          <number>1</number>
         </property>
         <property name="maximum">
-         <number>10</number>
+         <number>22</number>
         </property>
        </widget>
       </item>
@@ -84,6 +84,21 @@
         </property>
         <property name="text">
          <string/>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="label">
+        <property name="font">
+         <font>
+          <pointsize>7</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>Jede Ziffer zeigt den Zustand eines Faches, mit 0 = &quot;Post&quot; und 1 = &quot;keine Post&quot;. Fach 1 beginnt links an erster Stelle.</string>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
