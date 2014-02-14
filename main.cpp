@@ -2,7 +2,7 @@
 #include <QApplication>
 
 #ifndef VERSION
-#define VERSION "0.0.2"
+#define VERSION "0.0.3"
 #endif
 
 int main(int argc, char *argv[])
