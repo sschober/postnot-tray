@@ -40,8 +40,9 @@ PNDialog::PNDialog(QWidget *parent) :
 
         icnEMail = new QIcon(":/icon/email-small");
         icnEMailAktiv = new QIcon(":/icon/email-aktiv");
+        icnEMailUnbekannt = new QIcon(":/icon/unbekannt");
 
-        ti->setIcon(*icnEMail);
+        ti->setIcon(*icnEMailUnbekannt);
         ti->setToolTip("PostNot");
         ti->setProperty(STATUS_,QVariant(false));
         ti->show();
