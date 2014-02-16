@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>371</width>
-    <height>345</height>
+    <height>376</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -95,7 +95,7 @@
          </font>
         </property>
         <property name="text">
-         <string>Jede Ziffer zeigt den Zustand eines Faches, mit 0 = &quot;Post&quot; und 1 = &quot;keine Post&quot;. Fach 1 beginnt links an erster Stelle.</string>
+         <string>Jede Ziffer gibt den Zustand eines Faches wieder, wobei die erste Ziffer (von links) dem ersten Fach (von oben) entspricht: 0 = &quot;Post&quot;, 1 = &quot;keine Post&quot;.</string>
         </property>
         <property name="wordWrap">
          <bool>true</bool>
