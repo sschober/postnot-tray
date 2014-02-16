@@ -21,6 +21,12 @@
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
       <widget class="QLabel" name="label">
+       <property name="maximumSize">
+        <size>
+         <width>48</width>
+         <height>48</height>
+        </size>
+       </property>
        <property name="layoutDirection">
         <enum>Qt::LeftToRight</enum>
        </property>
@@ -52,7 +58,7 @@
    <item>
     <widget class="QLabel" name="lbText">
      <property name="text">
-      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Ein Benachrichtigungssymbol im Infobereich der Taskleiste für das Postbenachrichtigungssystem des Kommunikations- und Informationszentrum (kiz) der Universität Ulm. Es wird der Zustand der Postfächer im Sekretariat O26/5209 wiedergegeben, d.h. ob Post vorhanden ist oder nicht.&lt;/p&gt;&lt;p&gt;Anregungen und Fehler bitte &lt;a href=&quot;https://github.com/sschober/postnot-tray/issues&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;hier&lt;/span&gt;&lt;/a&gt; hinterlassen.&lt;/p&gt;&lt;p&gt;Autor: &lt;a href=&quot;mailto:sven.schober@uni-ulm.de&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Sven Schober&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;p&gt;Beteiligte: Christina Does, Silvan Reiser&lt;/p&gt;&lt;p&gt;Icon: &lt;a href=&quot;http://semlabs.co.uk/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;David Hopkins&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Ein Benachrichtigungssymbol im Infobereich der Taskleiste für das Postbenachrichtigungssystem des Kommunikations- und Informationszentrum (kiz) der Universität Ulm. Es wird der Zustand der Postfächer im Sekretariat O26/5209 wiedergegeben, d.h. ob im entsprechenden Fach Post vorhanden ist oder nicht.&lt;/p&gt;&lt;p&gt;Anregungen und Fehler bitte &lt;a href=&quot;https://github.com/sschober/postnot-tray/issues&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;hier&lt;/span&gt;&lt;/a&gt; hinterlassen.&lt;/p&gt;&lt;p&gt;Autor: &lt;a href=&quot;mailto:sven.schober@uni-ulm.de&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Sven Schober&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;p&gt;Beteiligte: Christina Does, Silvan Reiser&lt;/p&gt;&lt;p&gt;Icon: &lt;a href=&quot;http://semlabs.co.uk/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;David Hopkins&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
      <property name="textFormat">
       <enum>Qt::RichText</enum>
