@@ -3,7 +3,7 @@
 
 1. Archiv herunterladen
 2. Archiv entpacken
-![Archiv entpacken](https://www.dropbox.com/s/tfczqd1mt1wdjiq/2014-02-18%20at%2021.26.png)
+![Archiv entpacken](https://dl.dropboxusercontent.com/u/4480138/pnt/windows/2014-02-18%20at%2021.26.png)
 5. Bestätigen
 
-![Anwendung gestartet](http://dl.dropboxusercontent.com/s/09mrxtc2ryryrij/2014-02-18%20at%2021.32.png)
+![Anwendung gestartet](https://dl.dropboxusercontent.com/u/4480138/pnt/windows/2014-02-18%20at%2021.32.png)
