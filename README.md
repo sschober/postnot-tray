@@ -6,6 +6,18 @@ Postnotifikation in der Symbolleiste.
 Das geprüfte Postfach, sowie das Aktualisierungsinterval sind über
 einen Dialog konfigurierbar.
 
+Screenshots
+-----------
+
+**Taskleisten-Icon**
+
+![PostNot-Tray-Icon](https://dl.dropboxusercontent.com/u/4480138/pnt/macosx/2014-02-18%20at%2021.21.png)
+
+**Konfigurationsdialog**
+
+![PostNot-Tray-Konfigurationsdialog](https://dl.dropboxusercontent.com/u/4480138/pnt/2014-02-18%20at%2023.49.png)
+
+
 Downloads
 ---------
 
