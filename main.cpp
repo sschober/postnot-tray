@@ -15,6 +15,8 @@ int main(int argc, char *argv[])
 
     PNDialog w;
 
+    // TODO:
+    // Beim Ersten Start die Konfigurationzeigen, dann nicht mehr.
     //    w.show();
 
     return a.exec();
